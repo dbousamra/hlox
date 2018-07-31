@@ -1,8 +1,17 @@
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
 import System.Environment (getArgs)
 import System.Exit (exitWith, ExitCode(..))
 import qualified Data.ByteString as BS
+import qualified Data.Text as T
+import Parsing
+import Token
+
+
+data Error
+  = ParsingError Int String
 
 main :: IO ()
 main = do
@@ -30,3 +39,10 @@ runPrompt = do
 
 run :: BS.ByteString -> IO ()
 run bytes = putStrLn "Running run"
+
+error :: Int -> String -> Error
+error = ParsingError
+
+renderError :: Error -> String
+renderError (ParsingError line message) = "[line " ++ show line ++ "] Error: " ++ message;
+  
