@@ -63,6 +63,30 @@ semicolon = token ";" SEMICOLON
 star :: Parser Token
 star = token "*" STAR
 
+bang :: Parser Token
+bang = token "!" BANG
+
+bangEqual :: Parser Token
+bangEqual = token "!=" BANG_EQUAL
+
+equal :: Parser Token
+equal = token "=" EQUAL
+
+equalEqual :: Parser Token
+equalEqual = token "==" EQUAL_EQUAL
+
+less :: Parser Token
+less = token "<" LESS
+
+lessEqual :: Parser Token
+lessEqual = token "<=" LESS_EQUAL
+
+greater :: Parser Token
+greater = token ">" LESS
+
+greaterEqual :: Parser Token
+greaterEqual = token ">=" GREATER_EQUAL
+
 tokens :: Parser Token
 tokens = choice
   [ leftParen
@@ -75,4 +99,8 @@ tokens = choice
   , plus
   , semicolon
   , star
+  , choice [bangEqual, bang]
+  , choice [equalEqual, equal]
+  , choice [lessEqual, less]
+  , choice [greaterEqual, greater]
   ]
