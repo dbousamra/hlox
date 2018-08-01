@@ -87,6 +87,9 @@ greater = token ">" LESS
 greaterEqual :: Parser Token
 greaterEqual = token ">=" GREATER_EQUAL
 
+slash :: Parser Token
+slash = token "/" SLASH
+
 tokens :: Parser Token
 tokens = choice
   [ leftParen
@@ -103,4 +106,11 @@ tokens = choice
   , choice [equalEqual, equal]
   , choice [lessEqual, less]
   , choice [greaterEqual, greater]
+  , slash
   ]
+
+manyTokens :: Parser [Token]
+manyTokens = many tokens
+
+example :: String
+example = "(( )){} // grouping stuff\n!*+-/=<> <= == // operators"
