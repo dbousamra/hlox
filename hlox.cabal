@@ -21,3 +21,13 @@ executable hlox
                      , megaparsec
                      , bytestring
                      , text
+
+test-suite hlox-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , hlox
+                     , tasty
+                     , tasty-hunit
+  default-language:    Haskell2010

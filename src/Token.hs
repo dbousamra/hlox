@@ -48,10 +48,30 @@ data TokenType
     | WS
     deriving (Show, Eq, Ord)
 
+reservedWords :: [(String, TokenType)]
+reservedWords = [
+    ("and",    AND),
+    ("class",  CLASS),
+    ("else",   ELSE),
+    ("false",  FALSE),
+    ("for",    FOR),
+    ("fun",    FUN),
+    ("if",     IF),
+    ("nil",    NIL),
+    ("or",     OR),
+    ("print",  PRINT),
+    ("return", RETURN),
+    ("super",  SUPER),
+    ("this",   THIS),
+    ("true",   TRUE),
+    ("var",    VAR),
+    ("while",  WHILE)
+  ]
+
 data Token = Token
-  { t_type :: TokenType
+  { t_type   :: TokenType
   , t_lexeme :: String
-  , t_line :: Int
+  , t_line   :: Int
   } deriving (Show, Eq, Ord)
 
 data Expr
